@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D35079EC2052650F00C7BF73 /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D35079EB2052650F00C7BF73 /* noImage.png */; };
 		D3E4F4CC205136C700E403C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E4F4CB205136C700E403C7 /* main.m */; };
 		D3E4F4CF205136C700E403C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E4F4CE205136C700E403C7 /* AppDelegate.m */; };
 		D3E4F4D2205136C700E403C7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E4F4D1205136C700E403C7 /* ViewController.m */; };
@@ -15,6 +16,7 @@
 		D3E4F4DA205136C700E403C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E4F4D8205136C700E403C7 /* LaunchScreen.storyboard */; };
 		D3E4F4E5205136C700E403C7 /* iOSDemoProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E4F4E4205136C700E403C7 /* iOSDemoProjectTests.m */; };
 		D3E4F4F0205136C700E403C7 /* iOSDemoProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E4F4EF205136C700E403C7 /* iOSDemoProjectUITests.m */; };
+		D3E4F4FE2051654700E403C7 /* jsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E4F4FD2051654700E403C7 /* jsonData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D35079EB2052650F00C7BF73 /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage.png; sourceTree = "<group>"; };
 		D3E4F4C7205136C700E403C7 /* iOSDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E4F4CB205136C700E403C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D3E4F4CD205136C700E403C7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		D3E4F4EB205136C700E403C7 /* iOSDemoProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSDemoProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E4F4EF205136C700E403C7 /* iOSDemoProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSDemoProjectUITests.m; sourceTree = "<group>"; };
 		D3E4F4F1205136C700E403C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3E4F4FD2051654700E403C7 /* jsonData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jsonData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		D3E4F4C9205136C700E403C7 /* iOSDemoProject */ = {
 			isa = PBXGroup;
 			children = (
+				D35079EB2052650F00C7BF73 /* noImage.png */,
 				D3E4F4CD205136C700E403C7 /* AppDelegate.h */,
 				D3E4F4CE205136C700E403C7 /* AppDelegate.m */,
 				D3E4F4D0205136C700E403C7 /* ViewController.h */,
@@ -110,6 +115,7 @@
 				D3E4F4D8205136C700E403C7 /* LaunchScreen.storyboard */,
 				D3E4F4DB205136C700E403C7 /* Info.plist */,
 				D3E4F4CA205136C700E403C7 /* Supporting Files */,
+				D3E4F4FD2051654700E403C7 /* jsonData.json */,
 			);
 			path = iOSDemoProject;
 			sourceTree = "<group>";
@@ -247,6 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3E4F4DA205136C700E403C7 /* LaunchScreen.storyboard in Resources */,
+				D3E4F4FE2051654700E403C7 /* jsonData.json in Resources */,
+				D35079EC2052650F00C7BF73 /* noImage.png in Resources */,
 				D3E4F4D7205136C700E403C7 /* Assets.xcassets in Resources */,
 				D3E4F4D5205136C700E403C7 /* Main.storyboard in Resources */,
 			);
@@ -507,6 +515,7 @@
 				D3E4F4F6205136C700E403C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3E4F4F7205136C700E403C7 /* Build configuration list for PBXNativeTarget "iOSDemoProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +524,7 @@
 				D3E4F4F9205136C700E403C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3E4F4FA205136C700E403C7 /* Build configuration list for PBXNativeTarget "iOSDemoProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +533,7 @@
 				D3E4F4FC205136C700E403C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
