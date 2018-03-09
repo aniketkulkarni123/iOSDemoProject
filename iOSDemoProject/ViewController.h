@@ -7,21 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableViewCell.h"
 
 
-@interface ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>{
-     NSMutableData *responseData;
-}
+@interface ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,assign) NSMutableArray *tableRowsArray;
 @property (strong, nonatomic) NSMutableData *responseData;
-@property (strong, nonatomic) UITableViewCell *tableRowCell;
-@property (strong,nonatomic) UILabel *rowTitle;
-@property (strong, nonatomic) UIImageView *rowImage;
-@property (strong,nonatomic) UILabel *rowDescription;
+@property (strong, nonatomic) TableViewCell *tableRowCell;
 @property (strong,nonatomic) UITableView *tableview;
 @property (strong,nonatomic) NSURLConnection *urlConnection;
 @property (strong,nonatomic) NSDictionary *jsonDict;
+
 
 @end
 
