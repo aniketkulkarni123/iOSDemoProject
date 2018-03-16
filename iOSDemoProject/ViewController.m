@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "TableViewCell.h"
+#import "constants.h"
 
 @interface ViewController ()
 @end
@@ -21,9 +22,9 @@
     self.tableview.rowHeight = UITableViewAutomaticDimension;
     self.tableview.estimatedRowHeight = 200.0;
     
-    [self.tableview registerClass:[TableViewCell class] forCellReuseIdentifier:@"cellIdentifier"];
+    [self.tableview registerClass:[TableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
     UINavigationBar* navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:@"iOS Demo project"];
+    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:PAGE_TITLE];
     [navbar setItems:@[navItem]];
     [self.view addSubview:navbar];
     navbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -35,7 +36,7 @@
     tableRowsArray = [_jsonDict valueForKey:@"rows"];
 
     /* Uncomment for fetching json from url */
-    //    NSString *url_string = [NSString stringWithFormat: @"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"];
+    //      NSString *url_string = [NSString stringWithFormat:REMOTE_URL];
     //    NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
     //    _jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     //     tableRowsArray = [_jsonDict valueForKey:@"rows"];
@@ -43,8 +44,17 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     self.tableview.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    [self.tableview addSubview:refreshControl];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+- (void) refreshView: (UIRefreshControl *)refresh {
+    [self.tableview reloadData];
+    [refresh endRefreshing];
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //minimum size of your cell, it should be single line of label if you are not clear min. then return UITableViewAutomaticDimension;
@@ -92,7 +102,7 @@
 // Return the row for the corresponding section and row
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"cellIdentifier";
+    static NSString *cellIdentifier = CELL_IDENTIFIER;
     TableViewCell *cell = [self.tableview dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
         cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -113,7 +123,7 @@
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]];
         UIImage *image = [UIImage imageWithCIImage:[CIImage imageWithContentsOfURL:url]];
         if(imageUrl == [NSNull null]){
-            image = [UIImage imageNamed:@"noImage.png"];
+            image = [UIImage imageNamed:DEFAULT_IMAGE];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             TableViewCell *cellToUpdate = [self.tableview cellForRowAtIndexPath:indexPath];
