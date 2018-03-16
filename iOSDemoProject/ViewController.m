@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "TableViewCell.h"
 #import "constants.h"
+#import "Masonry.h"
 
 @interface ViewController ()
 @end
@@ -18,6 +19,7 @@
 @synthesize responseData;
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.tableview.rowHeight = UITableViewAutomaticDimension;
     self.tableview.estimatedRowHeight = 200.0;
@@ -55,11 +57,10 @@
     [refresh endRefreshing];
 }
 
-
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //minimum size of your cell, it should be single line of label if you are not clear min. then return UITableViewAutomaticDimension;
-    return UITableViewAutomaticDimension;
-}
+//-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    //minimum size of your cell, it should be single line of label if you are not clear min. then return UITableViewAutomaticDimension;
+//    return UITableViewAutomaticDimension;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -70,21 +71,28 @@
 {
     [super loadView];
     //Create UITableView
-    self.tableview = [self makeTableView];
-    [self.view addSubview:self.tableview];
+    [self makeTableView];
 }
 
--(UITableView *)makeTableView
+-(void)makeTableView
 {
-    self.tableview = [[UITableView alloc] initWithFrame:CGRectMake(0,50,self.view.frame.size.width,self.view.frame.size.height) style:UITableViewStylePlain];
-    return self.tableview;
+    self.tableview = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [self.view addSubview:self.tableview];
+    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make){
+        make.width.mas_equalTo(self.view.frame.size.width);
+        make.height.mas_equalTo(self.view.frame.size.height);
+        make.leading.mas_equalTo(@0);
+        make.top.mas_equalTo(50);
+        make.trailing.mas_equalTo(@0);
+        make.bottom.mas_equalTo(@0);
+    }];
 }
 
 #pragma Table View Data Source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 130.0f;
+    return 120.0f;
 }
 
 // Return the number of sections

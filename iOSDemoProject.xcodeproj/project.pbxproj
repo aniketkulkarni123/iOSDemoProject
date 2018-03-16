@@ -47,6 +47,7 @@
 		B88B37794760E5D0B73E455F /* libPods-iOSDemoProjectUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSDemoProjectUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DDD86AA412B24239C7A3FF /* Pods-iOSDemoProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemoProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemoProject/Pods-iOSDemoProject.debug.xcconfig"; sourceTree = "<group>"; };
 		D1BE38E09FF40BB24AF9D135 /* Pods-iOSDemoProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemoProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemoProjectUITests/Pods-iOSDemoProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D30B2BEB205BEB5600B101FC /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		D35079EB2052650F00C7BF73 /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage.png; sourceTree = "<group>"; };
 		D35079ED2052A0F400C7BF73 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		D35079EE2052A0F400C7BF73 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		D3E4F4C9205136C700E403C7 /* iOSDemoProject */ = {
 			isa = PBXGroup;
 			children = (
+				D30B2BEB205BEB5600B101FC /* constants.h */,
 				D35079EB2052650F00C7BF73 /* noImage.png */,
 				D3E4F4CD205136C700E403C7 /* AppDelegate.h */,
 				D3E4F4CE205136C700E403C7 /* AppDelegate.m */,

@@ -10,3 +10,6 @@
 #define CELL_IDENTIFIER @"cellIdentifier"
 #define PAGE_TITLE @"iOS Demo project"
 #define DEFAULT_IMAGE @"noImage.png"
+#define ARIAL_FONT @"Arial"
+#define ARIAL_FONT_BOLD @"Arial-bold"
+#define FONT_SIZE 12.0f

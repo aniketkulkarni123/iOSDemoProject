@@ -7,6 +7,8 @@
 //
 
 #import "TableViewCell.h"
+#import "Masonry.h"
+#import "constants.h"
 
 @implementation TableViewCell
 
@@ -26,23 +28,41 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         //Configure title, description and image
-        self.rowTitle = [[UILabel alloc] initWithFrame:CGRectMake(170,0,300, 30)];
+        self.rowTitle = [[UILabel alloc] init];
         self.rowTitle.textColor = [UIColor blackColor];
-        self.rowTitle.font = [UIFont fontWithName:@"Arial-Bold" size:12.0f];
+        self.rowTitle.font = [UIFont fontWithName:ARIAL_FONT_BOLD size:FONT_SIZE];
         
-        self.rowDescription = [[UILabel alloc] initWithFrame:CGRectMake(170,20,self.contentView.frame.size.width-130,90)];
+        self.rowDescription = [[UILabel alloc] init];
         self.rowDescription.textColor = [UIColor blackColor];
-        self.rowDescription.font = [UIFont fontWithName:@"Arial" size:12.0f];
+        self.rowDescription.font = [UIFont fontWithName:ARIAL_FONT size:FONT_SIZE];
         self.rowDescription.numberOfLines = 0;
         self.rowDescription.translatesAutoresizingMaskIntoConstraints = false;
         
-        self.rowImage = [[UIImageView alloc] initWithFrame:CGRectMake(15,10,150,100)];
-        UIImage *myImage = [UIImage imageNamed: @"noImage.png"];
+        self.rowImage = [[UIImageView alloc] init];
+        UIImage *myImage = [UIImage imageNamed:DEFAULT_IMAGE];
         self.rowImage.image = myImage;
         
-        [self addSubview:self.rowTitle];
         [self addSubview:self.rowImage];
+        [self.rowImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.left.equalTo(@15);
+            make.top.equalTo(@10);
+            make.width.equalTo(@150);
+            make.height.equalTo(@100);
+        }];
+        
+        [self addSubview:self.rowTitle];
+        [self.rowTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(self.rowImage.mas_trailing).with.offset(5);
+            make.top.equalTo(self.rowImage.mas_top);
+        }];
         [self addSubview:self.rowDescription];
+        
+        [self.rowDescription mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(self.rowTitle.mas_leading);
+            make.top.mas_equalTo(self.rowTitle.mas_top).with.offset(20);
+            make.trailing.mas_equalTo(self.contentView.mas_trailing).with.offset(-10);
+        }];
+        
     }
     return self;
 }

@@ -19,6 +19,5 @@
 @property (strong,nonatomic) NSURLConnection *urlConnection;
 @property (strong,nonatomic) NSDictionary *jsonDict;
 
-
 @end
 
