@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "TableViewCell.h"
+#import "AFNetworking.h"
+#import "constants.h"
 
 @interface iOSDemoProjectTests : XCTestCase
 
@@ -37,12 +39,27 @@
     }];
 }
 
-- (void)testJsonIsValid
+- (void)testWhetherDataIsNotNil
     {
-        NSString* filepath = [[NSBundle mainBundle] pathForResource:@"jsonData" ofType:@"json"];
-        NSData *data = [NSData dataWithContentsOfFile:filepath];
-        id JSON = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        XCTAssertTrue([JSON isKindOfClass:[NSDictionary class]]);
+        NSURL *URL = [NSURL URLWithString:REMOTE_URL];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+        //First check whether we are connected to internet.
+        
+            [manager GET:URL.absoluteString
+              parameters:nil
+                progress:nil
+                 success:^(NSURLSessionTask *task, id responseObject) {
+                     XCTAssertNotNil(responseObject,@"Response object not nil");
+                 }
+                 failure:^(NSURLSessionTask *operation, NSError *error) {
+                     NSLog(@"Error: %@", error);
+                 }
+             ];
+        
     }
 
 

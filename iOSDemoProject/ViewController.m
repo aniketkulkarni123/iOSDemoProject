@@ -20,11 +20,12 @@
 @synthesize tableRowsArray;
 @synthesize responseData;
 
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];   
     self.tableview.rowHeight = UITableViewAutomaticDimension;
-    self.tableview.estimatedRowHeight = 120.0f;
+    self.tableview.estimatedRowHeight = 200.0f;
     
     [self.tableview registerClass:[TableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
     UINavigationBar* navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
@@ -50,16 +51,16 @@
                 _jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 tableRowsArray = [_jsonDict valueForKey:@"rows"];
                 [self.tableview reloadData];
+                [self.tableview sizeToFit];
             }
             failure:^(NSURLSessionTask *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
             }
      ];
     }
-    
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    self.tableview.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.tableview.translatesAutoresizingMaskIntoConstraints = false;
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     [self.tableview addSubview:refreshControl];
@@ -101,7 +102,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewAutomaticDimension;
+    return 160.0f;
 }
 
 // Return the number of sections
@@ -146,7 +147,7 @@
             TableViewCell *cellToUpdate = [self.tableview cellForRowAtIndexPath:indexPath];
             if (cellToUpdate != nil) {
                 [cellToUpdate.rowImage setImage:image];
-                [cellToUpdate setNeedsLayout];
+                [cellToUpdate setNeedsLayout];                
             }
         });
     });

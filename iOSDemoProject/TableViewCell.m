@@ -35,9 +35,8 @@
         
         self.rowDescription = [[UILabel alloc] init];
         self.rowDescription.textColor = [UIColor blackColor];
-        self.rowDescription.font = [UIFont fontWithName:ARIAL_FONT size:FONT_SIZE];
+        self.rowDescription.font = [UIFont fontWithName:ARIAL_FONT size:11.0f];
         self.rowDescription.numberOfLines = 0;
-        self.rowDescription.translatesAutoresizingMaskIntoConstraints = false;
         
         self.rowImage = [[UIImageView alloc] init];
         UIImage *myImage = [UIImage imageNamed:DEFAULT_IMAGE];
@@ -48,23 +47,22 @@
             make.leading.left.equalTo(@15);
             make.top.equalTo(@10);
             make.width.equalTo(@150);
+            make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-5);
             make.height.equalTo(@100);
         }];
-        
         [self addSubview:self.rowTitle];
         [self.rowTitle mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.mas_equalTo(self.rowImage.mas_trailing).with.offset(5);
             make.top.equalTo(self.rowImage.mas_top);
         }];
         [self addSubview:self.rowDescription];
-        
         [self.rowDescription mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.mas_equalTo(self.rowTitle.mas_leading);
-            make.top.mas_equalTo(self.rowTitle.mas_top).with.offset(20);
-            make.trailing.mas_equalTo(self.contentView.mas_trailing).with.offset(-10);            
+            make.top.mas_equalTo(self.rowTitle.mas_bottom).with.offset(5);
+            make.trailing.mas_equalTo(self.contentView.mas_trailing).with.offset(-10);
+            make.bottom.mas_lessThanOrEqualTo(self.contentView.mas_bottom).with.offset(112);
         }];
-        
-    }
+    }    
     return self;
 }
 @end
