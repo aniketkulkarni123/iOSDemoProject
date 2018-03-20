@@ -119,7 +119,7 @@
     // Fetch images using GCD lazy loading
     dispatch_queue_t downloadThumbnailQueue = dispatch_queue_create("GetImage", NULL);
     dispatch_async(downloadThumbnailQueue, ^{
-        id imageUrl = [[tableRowsArray objectAtIndex:indexPath.row] valueForKey:@"imageHref"];
+        id imageUrl = [[tableRowsArray objectAtIndex:indexPath.row] valueForKey:@"imageHref"];  
         imageUrl = (imageUrl == [NSNull null]) ? @"": imageUrl;
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]];
         UIImage *image = [UIImage imageWithCIImage:[CIImage imageWithContentsOfURL:url]];
