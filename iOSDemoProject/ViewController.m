@@ -10,6 +10,8 @@
 #import "TableViewCell.h"
 #import "constants.h"
 #import "Masonry.h"
+#import "AFNetworking.h"
+#import "Reachability.h"
 
 @interface ViewController ()
 @end
@@ -20,7 +22,7 @@
 
 - (void)viewDidLoad {
     
-    [super viewDidLoad];
+    [super viewDidLoad];   
     self.tableview.rowHeight = UITableViewAutomaticDimension;
     self.tableview.estimatedRowHeight = 120.0f;
     
@@ -31,16 +33,30 @@
     [self.view addSubview:navbar];
     navbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
-    //Fetching data from local json
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"jsonData" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    _jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    tableRowsArray = [_jsonDict valueForKey:@"rows"];
-    /* Uncomment for fetching json from url */
-    //      NSString *url_string = [NSString stringWithFormat:REMOTE_URL];
-    //    NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
-    //    _jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    //     tableRowsArray = [_jsonDict valueForKey:@"rows"];
+    NSURL *URL = [NSURL URLWithString:REMOTE_URL];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    //First check whether we are connected to internet.
+    if([self connected]){
+    [manager GET:URL.absoluteString
+         parameters:nil
+           progress:nil
+            success:^(NSURLSessionTask *task, id responseObject) {
+                //NSLog(@"JSON: %@",);
+                NSData *data = [[[NSString alloc] initWithData:responseObject encoding:NSISOLatin1StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
+                _jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                tableRowsArray = [_jsonDict valueForKey:@"rows"];
+                [self.tableview reloadData];
+            }
+            failure:^(NSURLSessionTask *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }
+     ];
+    }
+    
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     self.tableview.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -141,6 +157,13 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [_jsonDict valueForKey:@"title"];
+}
+
+- (BOOL)connected
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
 }
 
 @end
