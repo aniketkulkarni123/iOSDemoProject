@@ -30,6 +30,7 @@
         //Configure title, description and image
         self.rowTitle = [[UILabel alloc] init];
         self.rowTitle.textColor = [UIColor blackColor];
+        self.rowTitle.numberOfLines = 0;
         self.rowTitle.font = [UIFont fontWithName:ARIAL_FONT_BOLD size:FONT_SIZE];
         
         self.rowDescription = [[UILabel alloc] init];
@@ -60,7 +61,7 @@
         [self.rowDescription mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.mas_equalTo(self.rowTitle.mas_leading);
             make.top.mas_equalTo(self.rowTitle.mas_top).with.offset(20);
-            make.trailing.mas_equalTo(self.contentView.mas_trailing).with.offset(-10);
+            make.trailing.mas_equalTo(self.contentView.mas_trailing).with.offset(-10);            
         }];
         
     }

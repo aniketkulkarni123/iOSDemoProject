@@ -11,6 +11,7 @@
 		76E1D7BE8A6B8BEC174F4718 /* libPods-iOSDemoProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C2062A250D0159D5DFD599 /* libPods-iOSDemoProjectTests.a */; };
 		D35079EC2052650F00C7BF73 /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D35079EB2052650F00C7BF73 /* noImage.png */; };
 		D35079EF2052A0F400C7BF73 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35079EE2052A0F400C7BF73 /* TableViewCell.m */; };
+		D3592C542060EF8100F826C1 /* TestCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3592C532060EF8100F826C1 /* TestCustomCell.m */; };
 		D3E4F4CC205136C700E403C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E4F4CB205136C700E403C7 /* main.m */; };
 		D3E4F4CF205136C700E403C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E4F4CE205136C700E403C7 /* AppDelegate.m */; };
 		D3E4F4D2205136C700E403C7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E4F4D1205136C700E403C7 /* ViewController.m */; };
@@ -51,6 +52,7 @@
 		D35079EB2052650F00C7BF73 /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage.png; sourceTree = "<group>"; };
 		D35079ED2052A0F400C7BF73 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		D35079EE2052A0F400C7BF73 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		D3592C532060EF8100F826C1 /* TestCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCustomCell.m; sourceTree = "<group>"; };
 		D3E4F4C7205136C700E403C7 /* iOSDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E4F4CB205136C700E403C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D3E4F4CD205136C700E403C7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				D3E4F4E4205136C700E403C7 /* iOSDemoProjectTests.m */,
 				D3E4F4E6205136C700E403C7 /* Info.plist */,
+				D3592C532060EF8100F826C1 /* TestCustomCell.m */,
 			);
 			path = iOSDemoProjectTests;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3592C542060EF8100F826C1 /* TestCustomCell.m in Sources */,
 				D3E4F4E5205136C700E403C7 /* iOSDemoProjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

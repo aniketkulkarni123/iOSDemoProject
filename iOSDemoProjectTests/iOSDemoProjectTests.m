@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "TableViewCell.h"
 
 @interface iOSDemoProjectTests : XCTestCase
 
@@ -35,5 +36,14 @@
         // Put the code you want to measure the time of here.
     }];
 }
+
+- (void)testJsonIsValid
+    {
+        NSString* filepath = [[NSBundle mainBundle] pathForResource:@"jsonData" ofType:@"json"];
+        NSData *data = [NSData dataWithContentsOfFile:filepath];
+        id JSON = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        XCTAssertTrue([JSON isKindOfClass:[NSDictionary class]]);
+    }
+
 
 @end

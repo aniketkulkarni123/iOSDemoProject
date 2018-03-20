@@ -22,7 +22,7 @@
     
     [super viewDidLoad];
     self.tableview.rowHeight = UITableViewAutomaticDimension;
-    self.tableview.estimatedRowHeight = 200.0;
+    self.tableview.estimatedRowHeight = 120.0f;
     
     [self.tableview registerClass:[TableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
     UINavigationBar* navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
@@ -36,13 +36,11 @@
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     _jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     tableRowsArray = [_jsonDict valueForKey:@"rows"];
-
     /* Uncomment for fetching json from url */
     //      NSString *url_string = [NSString stringWithFormat:REMOTE_URL];
     //    NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
     //    _jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     //     tableRowsArray = [_jsonDict valueForKey:@"rows"];
-    
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     self.tableview.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -57,11 +55,6 @@
     [refresh endRefreshing];
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    //minimum size of your cell, it should be single line of label if you are not clear min. then return UITableViewAutomaticDimension;
-//    return UITableViewAutomaticDimension;
-//}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -70,7 +63,7 @@
 - (void)loadView
 {
     [super loadView];
-    //Create UITableView
+    //Create UITableView with constraints
     [self makeTableView];
 }
 
@@ -92,7 +85,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120.0f;
+    return UITableViewAutomaticDimension;
 }
 
 // Return the number of sections
@@ -123,7 +116,7 @@
     id description = [[tableRowsArray objectAtIndex:indexPath.row] valueForKey:@"description"];
     cell.rowDescription.text = (description == [NSNull null]) ? @"":[[tableRowsArray objectAtIndex:indexPath.row] valueForKey:@"description"];
     
-    // Fetch images using GCD
+    // Fetch images using GCD lazy loading
     dispatch_queue_t downloadThumbnailQueue = dispatch_queue_create("GetImage", NULL);
     dispatch_async(downloadThumbnailQueue, ^{
         id imageUrl = [[tableRowsArray objectAtIndex:indexPath.row] valueForKey:@"imageHref"];
@@ -148,11 +141,6 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [_jsonDict valueForKey:@"title"];
-}
-
-- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // your action here
 }
 
 @end
